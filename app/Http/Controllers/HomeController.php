@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categorie;
+use App\Models\Todo;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,7 +26,22 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $categories = Categorie::all();
+
+        $user = auth()->user();
+
+        $todos = $user->todos;
         
-        return view('home');
+        return view('home', compact('categories', 'todos'));
+    }
+    public function store(Request $request)
+    {
+        $data = $request->validate([
+            'title' => ['required','string','max:255'],
+            'categorie_id' => ['required', 'integer']
+        ]);
+        auth()->user()->todos()->create($data);
+
+        return redirect()->back()->with('success', 'Votre nouvelle liste à bien été ajoutée');
     }
 }
