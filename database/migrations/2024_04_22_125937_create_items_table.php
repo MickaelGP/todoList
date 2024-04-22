@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('items', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->tinyInteger('status');
-            $table->unsignedBigInteger('list_id');
-            $table->foreign('list_id')->references('id')->on('lists');
+            $table->tinyInteger('status')->default(0);
+            $table->unsignedBigInteger('todo_id');
+            $table->foreign('todo_id')->references('id')->on('todos');
             $table->timestamps();
         });
     }
