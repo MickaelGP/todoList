@@ -15,13 +15,24 @@
                         <i class="fa-solid fa-list"></i>
                         <h3 class="card-title">{{$todo->title}}</h3>
                     </div>
-                    <div class="card-body d-flex justify-content-between align-items-end">
-                        <a href="#" class="btn btn-primary">Voir la liste</a>
-                        <div>
-                            <span class="badge rounded-pill text-bg-primary">
-                                <i class="{{$todo->categorie->icon}}"></i>
-                                {{$todo->categorie->name}}
-                            </span>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12 mb-2 text-center">
+                                <ul class="list-group">
+                                    @forelse ($todo->items as $item)
+                                    <li class="list-group-item @if($item->status === 1)list-group-item-success @endif">{{$item->name}}</li>
+                                    @empty
+                                       <li class="list-group-item">Aucune tache</li>
+                                    @endforelse
+                                </ul>
+                            </div>
+                            <div class="col-12 text-center">
+                                <a href="{{route('show',$todo->id)}}" class="btn btn-primary">Voir la liste</a>
+                                <span class="badge rounded-pill text-bg-primary">
+                                    <i class="{{$todo->categorie->icon}}"></i>
+                                    {{$todo->categorie->name}}
+                                </span>
+                            </div>
                         </div>
                     </div>
                 </div>
