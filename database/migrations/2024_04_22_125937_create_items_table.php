@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->tinyInteger('status')->default(0);
             $table->unsignedBigInteger('todo_id');
-            $table->foreign('todo_id')->references('id')->on('todos');
+            $table->foreign('todo_id')->references('id')->on('todos')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -11,6 +11,7 @@ class TodoController extends Controller
 {
     public function show(Todo $todo)
     {
+        $this->authorize('view', $todo);
         return view('show', compact('todo'));
     }
     public function store(Request $request)
@@ -22,12 +23,11 @@ class TodoController extends Controller
        
         Item::create($data);
 
-        return redirect()->route('home')->with('success', 'Votre liste a bien été ajouté');
+        return back()->with('success', 'Votre liste a bien été ajouté');
     }
     public function destroy(Item $item)
     {
         $item->delete();
-
         return back()->with('success', 'Votre tache à bien été supprimée');
     }
     public function updateStatus(Request $request, $id)
@@ -37,6 +37,7 @@ class TodoController extends Controller
     ]);
 
     $item = Item::findOrFail($id);
+    $this->authorize('update', $item->todo);
     $item->status = $request->status;
     $item->save();
 

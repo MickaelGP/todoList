@@ -1,6 +1,6 @@
 :root {
-    --primary: #649daeff;
-    --secondary: #66c6baff;
+    --primary: rgb(14, 86, 108);
+    --secondary: rgb(43, 67, 65);
     --success: #28a745;
     --danger: #dc3545;
     --warning: #fd7e14;

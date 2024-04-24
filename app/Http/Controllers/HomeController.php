@@ -44,4 +44,12 @@ class HomeController extends Controller
 
         return redirect()->back()->with('success', 'Votre nouvelle liste à bien été ajoutée');
     }
+    public function destroy(Todo $todo)
+    {
+        $this->authorize('delete', $todo);
+        $todo->delete();
+        
+        return back()->with('success', 'Votre liste à bien été supprimée');
+
+    }
 }
