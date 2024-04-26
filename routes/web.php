@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TodoController;
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -9,6 +10,14 @@ Route::get('/', function () {
 })->name('welcome');
 
 Auth::routes();
+
+Route::controller(AdminController::class)->prefix('/admin')->group(function(){
+    Route::get('/gestion', 'index')->name('gestion');
+    Route::post('/gestion', 'storeCategorie')->name('store.categorie');
+    Route::get('/gestion/{categorie}/edit', 'editCategorie')->name('edit');
+    Route::patch('/gestion/{categorie}/modifier', 'updateCategorie')->name('update.categorie');
+    Route::delete('/gestion/{categorie}', 'destroyCategorie')->name('destroy.categorie');
+});
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::post('/home/store', [HomeController::class, 'store'])->name('store');

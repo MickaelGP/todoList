@@ -30,8 +30,8 @@ class HomeController extends Controller
 
         $user = auth()->user();
 
-        $todos = $user->todos;
-        
+        $todos = $user->todos()->orderBy('categorie_id')->get();
+
         return view('home', compact('categories', 'todos'));
     }
     public function store(Request $request)
@@ -48,7 +48,7 @@ class HomeController extends Controller
     {
         $this->authorize('delete', $todo);
         $todo->delete();
-        
+
         return back()->with('success', 'Votre liste à bien été supprimée');
 
     }
