@@ -30,8 +30,6 @@ class HomeController extends Controller
 
         $user = auth()->user();
 
-        //$todos = $user->todos()->orderBy('categorie_id')->get();
-
         return view('home', compact('categories'));
     }
     public function store(Request $request)
@@ -60,12 +58,9 @@ class HomeController extends Controller
             $todos = $user->todos()->orderBy('categorie_id')->get();
         }else{
             $q = $request->input('q');
-            
-            $todos = $user->todos()->where('categorie_id', $q)
-                                      ->get();
+            $todos = $user->todos()->where('categorie_id', $q)->get();
         }
 
-       
         return view('search', compact('todos'));
     }
 }
