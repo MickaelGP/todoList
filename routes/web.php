@@ -20,6 +20,7 @@ Route::controller(AdminController::class)->prefix('/admin')->group(function(){
 });
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/home/search', [HomeController::class, 'search'])->name('search');
 Route::post('/home/store', [HomeController::class, 'store'])->name('store');
 Route::delete('/todo/{todo}/delete', [HomeController::class,'destroy'])->name('destroy');
 Route::get('/todo/{todo}/show', [TodoController::class,'show'])->name('show');

@@ -30,9 +30,9 @@ class HomeController extends Controller
 
         $user = auth()->user();
 
-        $todos = $user->todos()->orderBy('categorie_id')->get();
+        //$todos = $user->todos()->orderBy('categorie_id')->get();
 
-        return view('home', compact('categories', 'todos'));
+        return view('home', compact('categories'));
     }
     public function store(Request $request)
     {
@@ -51,5 +51,21 @@ class HomeController extends Controller
 
         return back()->with('success', 'Votre liste à bien été supprimée');
 
+    }
+    public function search(Request $request)
+    {
+        $user = auth()->user();
+        
+        if($request->input('q') === 'Sélectionnez une categorie'){
+            $todos = $user->todos()->orderBy('categorie_id')->get();
+        }else{
+            $q = $request->input('q');
+            
+            $todos = $user->todos()->where('categorie_id', $q)
+                                      ->get();
+        }
+
+       
+        return view('search', compact('todos'));
     }
 }

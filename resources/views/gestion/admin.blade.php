@@ -1,3 +1,7 @@
+@php
+    $title = 'Gestion'
+@endphp
+
 @extends('layouts.app')
 
 @section('content')

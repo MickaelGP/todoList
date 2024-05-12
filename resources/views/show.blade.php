@@ -1,5 +1,7 @@
+@php
+    $title = 'Ajout de tache';
+@endphp
 @extends('layouts.app')
-
 @section('content')
     <div class="container text-center">
         <h1>Liste</h1>

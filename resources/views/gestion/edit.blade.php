@@ -1,5 +1,8 @@
-@extends('layouts.app')
+@php
+    $title = 'Gestion' .' '.'|'.' '. $categorie->name;
+@endphp
 
+@extends('layouts.app')
 @section('content')
     <div class="container">
         <form action="{{route('update.categorie', $categorie)}}" method="POST">
