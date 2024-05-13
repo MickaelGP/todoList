@@ -45,10 +45,10 @@ class HomeController extends Controller
     public function destroy(Todo $todo)
     {
         $this->authorize('delete', $todo);
+
         $todo->delete();
-
+        
         return back()->with('success', 'Votre liste à bien été supprimée');
-
     }
     public function search(Request $request)
     {

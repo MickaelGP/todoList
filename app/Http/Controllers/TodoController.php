@@ -17,10 +17,10 @@ class TodoController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'name' => ['required','string', 'max:255'],
+            'name' => ['required', 'string', 'max:255'],
             'todo_id' => ['required']
         ]);
-       
+
         Item::create($data);
 
         return back()->with('success', 'Votre liste a bien été ajouté');
@@ -31,15 +31,17 @@ class TodoController extends Controller
         return back()->with('success', 'Votre tache à bien été supprimée');
     }
     public function updateStatus(Request $request, $id)
-{
-    $request->validate([
-        'status' => ['required', 'in:0,1'],
-    ]);
+    {
+        $request->validate([
+            'status' => ['required', 'in:0,1'],
+        ]);
 
-    $item = Item::findOrFail($id);
-    $this->authorize('update', $item->todo);
-    $item->status = $request->status;
-    $item->save();
-
-}
+        $item = Item::findOrFail($id);
+        $this->authorize('update', $item->todo);
+        $item->status = $request->status;
+        $item->save();
+        return response()->json([
+            'message' => 'Modification effectuée'
+        ]);
+    }
 }
