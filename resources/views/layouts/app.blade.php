@@ -52,7 +52,7 @@
                                     <a class="nav-link" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        {{ __('Se déconnecter') }}
                                     </a>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
@@ -63,7 +63,15 @@
                 </div>
             </div>
         </nav>
-
+        @if ($errors->any())
+            <div class="container alert mt-5 w-50 alert-danger text-center">
+                <ul class="my-0">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <main class="py-4">
             @yield('content')
         </main>
