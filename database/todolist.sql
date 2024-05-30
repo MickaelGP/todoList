@@ -59,8 +59,8 @@ CREATE TABLE items(
 INSERT INTO users (name, email, role, password) VALUES ('test', 'test@test.fr', 1, '$2y$12$7Ey.ll2N2/5MNenS5yL/M.SfY0Vw0ShxsZMiQIlCEMy78LmyJuMHu');
 -- Déchargement des données dans la table categories
 INSERT INTO categories (name, icon) VALUES
-('Voyage', 'bi-suitcase-lg-fill'),
-('Travail', 'bi-person-workspace');
+('Voyage', 'fa-solid fa-plane'),
+('Travail', 'fa-solid fa-briefcase');
 -- Déchargement des données dans la table todos
 INSERT INTO todos (title, user_id, categorie_id) VALUES
 ('Voyage en Italie', 1, 1),
