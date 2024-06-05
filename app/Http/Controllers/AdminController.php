@@ -43,8 +43,8 @@ class AdminController extends Controller
     {
         // Valide les données d'entrée pour la création de la catégorie
         $data = $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'icon' => ['nullable', 'string', 'max:255'],
+            'name' => ['required', 'string', 'max:60'],
+            'icon' => ['nullable', 'string', 'max:60'],
         ]);
 
         // Crée une nouvelle instance de Categorie avec les données validées
@@ -77,8 +77,8 @@ class AdminController extends Controller
     {
         // Valide les données d'entrée pour la mise à jour de la catégorie
         $data = $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'icon' => ['nullable', 'string', 'max:255'],
+            'name' => ['required', 'string', 'max:60'],
+            'icon' => ['nullable', 'string', 'max:60'],
         ]);
         // Met à jour la catégorie existante avec les données validées
         $categorie->update($data);
