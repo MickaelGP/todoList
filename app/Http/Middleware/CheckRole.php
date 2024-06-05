@@ -9,18 +9,22 @@ use Symfony\Component\HttpFoundation\Response;
 class CheckRole
 {
     /**
-     * Handle an incoming request.
+     * Vérification du rôle de l'utilisateur
      *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
+     * @param Request $request La requête HTTP
+     * @param Closure $next Le prochain middleware ou contrôleur à exécuter
+     * @return Response La réponse HTTP
      */
     public function handle(Request $request, Closure $next): Response
     {
-        // Vérifier si l'utilisateur est connecté
-        if ($request->user() && $request->user()->role === 1) {
+        // Vérifier si l'utilisateur est connecté et possède le rôle d'administrateur
+        if ($request->user() && $request->user()->role === 'admin') {
+
+            // Si l'utilisateur est autorisé, on continue la chaîne de middleware
             return $next($request);
         }
 
-        // Rediriger l'utilisateur vers une page d'erreur ou une autre page appropriée
+        // Si l'utilisateur n'est pas autorisé, on le redirige vers une page d'erreur ou d'accueil
         return redirect()->route('welcome');
     }
 }

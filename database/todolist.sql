@@ -11,7 +11,7 @@ CREATE TABLE users(
     id INT(10) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(60) NOT NULL,
     email VARCHAR(255) NOT NULL UNIQUE,
-    role INT DEFAULT 0,
+    role VARCHAR(60) DEFAULT 'user',
     password CHAR(60) NOT NULL,
     created_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
@@ -56,7 +56,7 @@ CREATE TABLE items(
 );
 
 -- Déchargement des données dans la table users
-INSERT INTO users (name, email, role, password) VALUES ('test', 'test@test.fr', 1, '$2y$12$7Ey.ll2N2/5MNenS5yL/M.SfY0Vw0ShxsZMiQIlCEMy78LmyJuMHu');
+INSERT INTO users (name, email, role, password) VALUES ('test', 'test@test.fr','admin' , '$2y$12$7Ey.ll2N2/5MNenS5yL/M.SfY0Vw0ShxsZMiQIlCEMy78LmyJuMHu');
 -- Déchargement des données dans la table categories
 INSERT INTO categories (name, icon) VALUES
 ('Voyage', 'fa-solid fa-plane'),
